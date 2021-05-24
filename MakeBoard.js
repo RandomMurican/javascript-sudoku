@@ -7,7 +7,7 @@ window.onload = function init() {
             let cell = document.createElement('td');
             cell.id = 'cell-' + (i + x * 9);
             cell.setAttribute("onclick","selectBox('" + cell.id + "')");
-            cell.classList.add('cell', 'hint');
+            cell.classList.add('cell');
             if (i % 3 == 0) {
                 cell.classList.add('border-r')
             }
