@@ -1,0 +1,27 @@
+#board {
+    background-color: black;
+    border-spacing: 0;
+    padding: 3px;
+}
+.row:nth-child(3), .row:nth-child(6) {
+    padding-bottom: 20px;
+}
+
+.cell {
+    background-color: lightgray;
+    padding: 1rem;
+    margin: 0;
+    border: 1px solid black;
+}
+
+.border-t {
+    border-top: 3px solid black;
+}
+
+.border-r {
+    border-right: 3px solid black;
+}
+
+.hint {
+    font-weight: bold;
+}
