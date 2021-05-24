@@ -25,3 +25,7 @@
 .hint {
     font-weight: bold;
 }
+
+.selected {
+    border: 1px solid red;
+}

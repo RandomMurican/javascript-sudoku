@@ -20,3 +20,8 @@ window.onload = function init() {
         board.appendChild(row);
     }
 }
+
+function selectBox(id) {
+    element = document.getElementById(id);
+    element.classList.toggle("selected");
+}
