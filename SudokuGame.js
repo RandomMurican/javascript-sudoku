@@ -4,10 +4,51 @@ const gridSize = 3;
 class SudokuGame {
     constructor() {
         this.board = [];
-        for (let x = 1; x <= boardSize; x++) {
-            for (let y = 1; y <= boardSize; y++) {
-                this.board.push(new SudokuCell(y));
+        let values = [0];
+        while (values.includes(0)) {
+            values = [];
+            for (let x = 1; x <= boardSize ** 2; x++) {
+                if (x < boardSize) {
+                    values.push(x);
+                } else {
+                    values.push(0);
+                }
             }
+            shuffleArray(values);
+            while (values.includes(0)) {
+                let least = -1;
+                let least_options = [1,2,3,4,5,6,7,8,9,10];
+                // iterate the whole board for the least flexible cell with no value
+                for (let cell = least + 1; cell < values.length; cell++) {
+                    if (values[cell] !== 0) {
+                        continue
+                    }
+                    var options = [1,2,3,4,5,6,7,8,9];
+                    // Search neighbors for option elimination
+                    const neighbors = this.cellNeighbors(cell);
+                    for (let n = 0; n < neighbors.length; n++) {
+                        if (options.includes(values[neighbors[n]])) {
+                            options.splice(options.indexOf(values[neighbors[n]]), 1);
+                        }
+                    }
+                    if (options.length < least_options.length) {
+                        least = cell;
+                        least_options = options;
+                    }
+                    if (options.length === 0) {
+                        break;
+                    }
+                }
+                if (least_options.length > 0) {
+                    values[least] = randomArray(least_options);
+                } else {
+                    break;
+                }
+            }
+            
+        }
+        for (let i = 0; i < values.length; i++) {
+            this.board.push(new SudokuCell(values[i]));
         }
     }
 
