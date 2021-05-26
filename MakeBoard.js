@@ -6,12 +6,12 @@ window.onload = function init() {
         for (let i = 1; i < 10; i++) {
             let cell = document.createElement('td');
             cell.id = 'cell-' + (i + x * 9 - 1);
-            cell.setAttribute("onclick","selectBox('" + cell.id + "')");
+            cell.setAttribute("onclick","selectCell('" + cell.id + "')");
             cell.classList.add('cell');
-            if (i % 3 == 0) {
+            if (i % 3 == 0 && i % 9 > 0) {
                 cell.classList.add('border-r')
             }
-            if (x % 3 == 0) {
+            if (x > 0 && x % 3 == 0) {
                 cell.classList.add('border-t')
             }
             cell.innerText = 0;
@@ -25,7 +25,7 @@ window.onload = function init() {
 
 }
 
-function selectBox(id) {
+function selectCell(id) {
     let cell = document.getElementById(id);
     if (cell) {
         for (let i = 0; i < 81; i++) {
