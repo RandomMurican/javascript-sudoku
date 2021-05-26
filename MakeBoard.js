@@ -14,11 +14,15 @@ window.onload = function init() {
             if (x % 3 == 0) {
                 cell.classList.add('border-t')
             }
-            cell.innerText = i + x * 9 - 1;
+            cell.innerText = 0;
             row.appendChild(cell);
         }
         board.appendChild(row);
     }
+
+    let b = new SudokuGame();
+    b.print();
+
 }
 
 function selectBox(id) {
