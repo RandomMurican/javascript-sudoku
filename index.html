@@ -9,7 +9,22 @@
         <script language="javascript" type="text/javascript" src="SudokuCell.js"></script>
     </head>
     <body>
-        <table id="board">
-        </table>
+        <div class="game">
+            <table id="board">
+            </table>
+            <div class="button-row">
+                <button onclick="fill(null)">&nbsp;</button>
+                <button onclick="fill(1)">1</button>
+                <button onclick="fill(2)">2</button>
+                <button onclick="fill(3)">3</button>
+                <button onclick="fill(4)">4</button>
+                <button onclick="fill(5)">5</button>
+                <button onclick="fill(6)">6</button>
+                <button onclick="fill(7)">7</button>
+                <button onclick="fill(8)">8</button>
+                <button onclick="fill(9)">9</button>
+                <button onclick="verify()">Verify</button>
+            </div>
+        </div>
     </body>
 </html>

@@ -1,3 +1,5 @@
+var gameModel = null;
+
 window.onload = function init() {
     let board = document.getElementById('board');
     for (let x = 0; x < 9; x++) {
@@ -19,10 +21,8 @@ window.onload = function init() {
         }
         board.appendChild(row);
     }
-
-    let b = new SudokuGame();
-    b.print();
-
+    gameModel = new SudokuGame();
+    gameModel.print();
 }
 
 function selectCell(id) {
@@ -34,5 +34,25 @@ function selectCell(id) {
             document.getElementById('cell-'+i).classList.remove('selected');
         }
         cell.classList.toggle("selected")
+    }
+}
+
+function verify() {
+    if (gameModel.validate()) {
+        alert('Congrats!');
+    } else {
+        alert('Keep trying.');
+    }
+}
+
+function fill(value) {
+    for (let i = 0; i < 81; i++) {
+        if (document.getElementById('cell-'+i).classList.contains('selected')) {
+            if (!gameModel.board[i].isHint) {
+                gameModel.board[i].value = value === null ? null : +value;
+                gameModel.print();
+            }
+            return;
+        }
     }
 }

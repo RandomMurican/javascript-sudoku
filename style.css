@@ -2,6 +2,8 @@
     background-color: black;
     border-spacing: 0;
     padding: 3px;
+    margin: auto;
+    margin-bottom: 1em;
 }
 .row:nth-child(3), .row:nth-child(6) {
     padding-bottom: 20px;
@@ -28,4 +30,13 @@
 
 .selected {
     border: 1px solid red;
+}
+
+.game {
+    margin: 8px;
+    text-align: center;
+}
+
+button {
+    padding: 8px;
 }

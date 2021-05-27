@@ -3,6 +3,7 @@ const gridSize = 3;
 
 class SudokuGame {
     constructor() {
+        this.selected = null;
         this.board = [];
         let values = [0];
         while (values.includes(0)) {
@@ -50,13 +51,54 @@ class SudokuGame {
         for (let i = 0; i < values.length; i++) {
             this.board.push(new SudokuCell(values[i]));
         }
+        this.generateEasy();
+    }
+
+    get selectedCell() { return this.board[this.selected]; }
+    set selectedCell(cellIndex) {
+        if (cellIndex < 0 || cellIndex > boardSize ** 2) {
+            this.selected = null;
+        }
+        this.selected = cellIndex;
+    }
+
+    generateEasy() {
+        let leftToDisable = 51;
+        let indexes = [];
+        for (let i = 0; i < 81; i++) {
+            indexes.push(i);
+        }
+        shuffleArray(indexes);
+
+        let removed = true;
+        let i = 0;
+        while (removed) {
+            removed = false;
+            for (let i = 0; i < indexes.length; i++) {
+                if (this.elimination(indexes[i])) {
+                    if (this.board[indexes[i]].value === null) {
+                        throw new Error('Value is already null.');
+                    }
+                    this.board[indexes[i]].value = null;
+                    indexes.splice(i, 1);
+                    leftToDisable--;
+                    removed = true;
+                }
+            }
+        }
+        console.log(leftToDisable);
     }
 
     // temporary function until I pick a architecture pattern
     print() {
         for (let i = 0; i < this.board.length; i++) {
             let element = document.getElementById('cell-' + i);
-            element.innerText = this.board[i].value;
+            element.innerText = this.board[i].value == null ? '' : this.board[i].value;
+            if (this.board[i].isHint) {
+                element.classList.add('hint');
+            } else {
+                element.classList.remove('hint');
+            }
         }
     }
 
@@ -126,4 +168,25 @@ class SudokuGame {
         }
         return true;
     }
+
+    // Solving Techniques
+    // EASY
+    // Returns true or false depending on if the rule alone is capable of solving
+    elimination(cell, fromScratch=true) {
+        if (fromScratch) 
+            this.board[cell].eliminated = [1,2,3,4,5,6,7,8,9];
+
+        for (let neighbor of this.cellNeighbors(cell)) {
+            let index = this.board[cell].eliminated.indexOf(this.board[neighbor].value);
+            if (index >= 0) {
+                this.board[cell].eliminated.splice(index, 1);
+            }
+        }
+
+        return this.board[cell].eliminated.length === 1;
+    }
+
+
+
+
 }
