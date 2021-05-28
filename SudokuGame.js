@@ -49,7 +49,7 @@ class SudokuGame {
             
         }
         for (let i = 0; i < values.length; i++) {
-            this.board.push(new SudokuCell(values[i]));
+            this.board.push(new SudokuCell(i,values[i]));
         }
         this.generateEasy();
     }
