@@ -1,5 +1,6 @@
 class SudokuCell {
-    constructor(value = null) {
+    constructor(index, value = null) {
+        this.index = index;
         this.value = value;
         this.isHint = value === null ? false : true;
         this.eliminated = [];
