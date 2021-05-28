@@ -10,14 +10,9 @@ class ViewModel {
         }
         for (let i = 0; i < 81; i++) {
             let cell = document.getElementById('cell-'+i);
-<<<<<<< HEAD
             let previousValue = cell.classList.contains('selected');
             cell.classList.remove('selected');
             if (i === cellIndex && !previousValue && !this.gameModel.board[cellIndex].isHint) {
-=======
-            cell.classList.remove('selected');
-            if (i === cellIndex && !this.gameModel.board[cellIndex].isHint) {
->>>>>>> 3d5bcd5e78fa6d6fece434b20db325227c441919
                 cell.classList.add('selected');
             }
         }
