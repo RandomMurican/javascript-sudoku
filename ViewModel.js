@@ -1,6 +1,6 @@
 class ViewModel {
-    constructor() {
-        this.gameModel = new SudokuGame();
+    constructor(model = null) {
+        this.gameModel = model !== null ? model : new SudokuGame();
         this.display();
     }
 
@@ -54,4 +54,5 @@ class ViewModel {
 var viewModel = null;
 window.onload = function () {
     viewModel = new ViewModel();
+    viewModel.display();
 }
